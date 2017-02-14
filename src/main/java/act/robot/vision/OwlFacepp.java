@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
@@ -21,6 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,15 +70,14 @@ class OwlFacepp {
 
 
     //人脸搜索
-    String search(String path) throws IOException{
+    String search(InputStream stream) throws IOException{
 
         String url = "https://api-cn.faceplusplus.com/facepp/v3/search";
         double Threshold = 65.3;
 
         HttpPost httpPost = new HttpPost(url);
         HttpClient httpClient = HttpClientBuilder.create().build();
-        File file = new File(path);
-        FileBody bin = new FileBody(file);
+        InputStreamBody bin = new InputStreamBody(stream,"multipart/form-data");
         StringBody api_key_local = new StringBody(api_key, ContentType.TEXT_PLAIN);
         StringBody api_secret_local = new StringBody(api_secret, ContentType.TEXT_PLAIN);
         StringBody faceset_token_local = new StringBody(faceset_token, ContentType.TEXT_PLAIN);

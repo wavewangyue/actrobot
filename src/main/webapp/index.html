@@ -3,29 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>小航机器人</title>
+    <link rel="stylesheet" href="css/bootstrap-button.css">
     <style>
-        #camera{
-            width:40%;
-            height: 30%;
-            position: absolute;
-            margin-left: 30%;
-            margin-top: 20%;
+        @font-face {
+            font-family:myFont;
+            src: url("font/hanyikaiti.ttf")
         }
-        #textarea{
-            font-size: 20px;
-            font-weight: bold;
-            font-family:华文楷体, "Times New Roman";
+        html,body{
+            margin:0;
+            height:100%;
+        }
+        body{
+            text-align: center;
+            font-family: myFont;
+            overflow:hidden;
+        }
+        #camera_area{
+            text-align: center;
+            display: none;
+        }
+        #camera{
+            margin:auto;
+            width:640px;
+            height:480px;
+        }
+        #text_area{
+            font-size:40px;
+            padding:0 20%;
         }
     </style>
 </head>
 <body>
-    <div id="camera"></div>
-    <div id="container"></div>
-    <div id="textarea">轻触以唤醒</div>
+    <div id="text_area">轻触以唤醒</div>
+    <div id="camera_area">
+        <div id="camera"></div>
+        <a class="button button-royal button-rounded button-giant" id="take_picture">拍摄</a>
+    </div>
 
     <script src="/js/ex/jquery.min.js"></script>
     <script src="/js/ex/d3.min.js"></script>
     <script src="/js/ex/photobooth.min.js"></script>
+    <script src="/js/Utils.js"></script>
     <script src="/js/index.js"></script>
 </body>
 </html>
