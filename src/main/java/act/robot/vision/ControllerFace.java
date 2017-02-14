@@ -1,18 +1,18 @@
 package act.robot.vision;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by wave on 17-2-8.
@@ -35,6 +35,8 @@ public class ControllerFace {
     @RequestMapping(value = "/face_rec", method = RequestMethod.POST, produces="text/html;charset=UTF-8")
     @ResponseBody
     public String rec_a_face(HttpServletRequest request) throws IOException, ServletException{
+        request.getPart("photo");
+        /*
         InputStream image_input_stream = request.getInputStream();
         String dateString = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         File image = new File("/home/robot/photos/"+dateString+".png");
@@ -46,6 +48,7 @@ public class ControllerFace {
         }
         image_input_stream.close();
         image_output_stream.close();
+        */
         return "";
     }
 }

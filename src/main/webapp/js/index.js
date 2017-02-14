@@ -27,17 +27,6 @@ body.on("click",function(){
     }
 });
 $.ajaxSetup({
-    complete: function(data){
-        console.log(data);
-        if (state == 1){
-            state = 2;
-            if ((data.statusCode() == 200)&&(data.responseText != ""))
-                user = data.responseText;
-            else
-                user = "陌生人";
-            text_change("你好，"+user+"！");
-        }
-    },
     error: function (e) {
         console.log(e);
         alert("后台错误");
@@ -83,8 +72,20 @@ function upload_face(dataUrl) {
     $.ajax({
         type:'POST',
         url:'api/vision/face_rec',
+        dataType:'json',
         data:fd ,
         processData:false,
-        contentType:false
+        contentType:false,
+        complete: function(data){
+            console.log(data);
+            if (state == 1){
+                state = 2;
+                if ((data.statusCode() == 200)&&(data.responseText != ""))
+                    user = data.responseText;
+                else
+                    user = "陌生人";
+                text_change("你好，"+user+"！");
+            }
+        }
     });
 }
