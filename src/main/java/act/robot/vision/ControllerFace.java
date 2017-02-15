@@ -22,18 +22,27 @@ public class ControllerFace {
 
     private OwlFacepp owlFacepp = new OwlFacepp();
 
-    @RequestMapping(value = "/face_add", method = RequestMethod.GET, produces="text/html;charset=UTF-8")
+    @RequestMapping(value = "/face_add", method = RequestMethod.POST, produces="text/html;charset=UTF-8")
     @ResponseBody
-    public String add_a_face() throws IOException{
-        //owlFacepp.face_add("王玥", owlFacepp.detect("/home/wave/Pictures/webwxgetmsgimg.jpg"));
-        //System.out.println(owlFacepp.search("/home/wave/Pictures/webwxgetmsgimg.jpg"));
-        return "";
+    public boolean add_a_face(HttpServletRequest request) throws IOException{
+        String image_base64 = request.getParameter("base64");
+        String user_name = request.getParameter("name");
+        String filepath = save_a_face(image_base64);
+        //添加人脸
+        return owlFacepp.face_add(filepath, user_name);
     }
 
     @RequestMapping(value = "/face_rec", method = RequestMethod.POST, produces="text/html;charset=UTF-8")
     @ResponseBody
-    public String rec_a_face(HttpServletRequest request) throws IOException, ServletException{
+    public String rec_a_face(HttpServletRequest request) throws IOException{
         String image_base64 = request.getParameter("base64");
+        String filepath = save_a_face(image_base64);
+        //人脸搜索
+        return owlFacepp.search(filepath);
+    }
+
+    //保存照片
+    private String save_a_face(String image_base64) throws IOException{
         //Base64解码
         BASE64Decoder decoder = new BASE64Decoder();
         byte[] b = decoder.decodeBuffer(image_base64);
@@ -52,7 +61,6 @@ public class ControllerFace {
         out.write(b);
         out.flush();
         out.close();
-        //人脸搜索
-        return owlFacepp.search(filepath);
+        return filepath;
     }
 }

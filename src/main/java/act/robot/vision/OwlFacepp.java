@@ -11,7 +11,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
@@ -22,7 +21,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +38,7 @@ class OwlFacepp {
 
 
     //从图片中抽取人脸
-    String detect(String path) throws IOException{
+    private String detect(String path) throws IOException{
 
         String url = "https://api-cn.faceplusplus.com/facepp/v3/detect";
 
@@ -108,11 +106,12 @@ class OwlFacepp {
 
 
     //向人脸库中添加人脸
-    void face_add(String face_name, String face_token) throws IOException{
+    boolean face_add(String path, String face_name) throws IOException{
 
         String url = "https://api-cn.faceplusplus.com/facepp/v3/faceset/addface";
 
-        if (face_token == null) return;
+        String face_token = detect(path);
+        if (face_token == null) return false;
         HttpPost httpPost = new HttpPost(url);
         HttpClient httpclient = HttpClientBuilder.create().build();
         List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
@@ -126,11 +125,12 @@ class OwlFacepp {
         String responseString = EntityUtils.toString(httpEntity);
         log.info(responseString);
         face_naming(face_name, face_token);
+        return true;
     }
 
 
     //给人脸添加名字标识
-    void face_naming(String face_name, String face_token) throws IOException{
+    private void face_naming(String face_name, String face_token) throws IOException{
 
         String url = "https://api-cn.faceplusplus.com/facepp/v3/face/setuserid";
 
