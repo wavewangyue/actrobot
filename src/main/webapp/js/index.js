@@ -66,28 +66,22 @@ function text_change(text_target) {
 
 //将图片上传进行人脸识别
 function upload_face(dataUrl) {
-    console.log(dataUrl);
     var base64 = dataUrl.split(',')[1];
-    console.log(base64);
-    /*
     $.ajax({
         type:'POST',
         url:'api/vision/face_rec',
-        dataType:'json',
-        data:fd ,
-        processData:false,
-        contentType:false,
-        complete: function(data){
+        data:{'base64':base64},
+        success: function(data){
             console.log(data);
             if (state == 1){
                 state = 2;
-                if ((data.statusCode() == 200)&&(data.responseText != ""))
-                    user = data.responseText;
+                var user = "";
+                if (data != "")
+                    user = data;
                 else
                     user = "陌生人";
                 text_change("你好，"+user+"！");
             }
         }
     });
-    */
 }
