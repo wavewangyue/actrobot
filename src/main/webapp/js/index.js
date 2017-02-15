@@ -66,9 +66,10 @@ function text_change(text_target) {
 
 //将图片上传进行人脸识别
 function upload_face(dataUrl) {
-    var file = dataURLtoBlob(dataUrl);
-    var fd = new FormData();
-    fd.append('photo',file);
+    console.log(dataUrl);
+    var base64 = dataUrl.split(',')[1];
+    console.log(base64);
+    /*
     $.ajax({
         type:'POST',
         url:'api/vision/face_rec',
@@ -88,4 +89,5 @@ function upload_face(dataUrl) {
             }
         }
     });
+    */
 }
