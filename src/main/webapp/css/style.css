@@ -1,0 +1,41 @@
+@font-face {
+    font-family:myFont;
+    src: url("../font/hanyikaiti.ttf")
+}
+html,body{
+    margin:0;
+    height:100%;
+}
+body{
+    text-align: center;
+    font-family: myFont;
+    overflow:hidden;
+}
+#camera_area{
+    text-align: center;
+    display: none;
+}
+#camera{
+    margin:auto;
+    width:640px;
+    height:480px;
+}
+#text_area{
+    font-size:50px;
+    padding:10px 20%;
+}
+.input_box{
+    font-size: 40px;
+    font-family: myFont;
+    text-align:center;
+    padding:10px;
+    width:200px;
+}
+#text_select_area{
+    display: none;
+}
+.text_select_item{
+    margin-bottom: 50px;
+    margin-left: 50px;
+    width:30%;
+}

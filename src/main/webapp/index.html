@@ -4,40 +4,22 @@
     <meta charset="UTF-8">
     <title>小航机器人</title>
     <link rel="stylesheet" href="css/bootstrap-button.css">
-    <style>
-        @font-face {
-            font-family:myFont;
-            src: url("font/hanyikaiti.ttf")
-        }
-        html,body{
-            margin:0;
-            height:100%;
-        }
-        body{
-            text-align: center;
-            font-family: myFont;
-            overflow:hidden;
-        }
-        #camera_area{
-            text-align: center;
-            display: none;
-        }
-        #camera{
-            margin:auto;
-            width:640px;
-            height:480px;
-        }
-        #text_area{
-            font-size:40px;
-            padding:10px 20%;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div id="text_area">轻触以唤醒</div>
     <div id="camera_area">
         <div id="camera"></div>
-        <a class="button button-royal button-rounded button-giant" id="take_picture" style="margin-top:10px">拍摄</a>
+        <a class="button button-royal button-giant" id="take_picture" style="margin-top:20px">拍摄</a>
+    </div>
+    <div>
+        <input class="input_box" id='photo_name_input' type="text" style='margin-top:30px;display: none'/>
+    </div>
+    <div id="text_select_area" style="padding-top: 150px">
+        <a class="button button-royal button-giant text_select_item" id="ask_question">请教一个问题</a>
+        <a class="button button-royal button-giant text_select_item" id="record_new_face">记住我的脸</a><br/>
+        <a class="button button-royal button-giant text_select_item" id="ask_address">询问一个地址</a>
+        <a class="button button-giant text_select_item">更多功能尚待开发</a><br/>
     </div>
 
     <script src="/js/ex/jquery.min.js"></script>

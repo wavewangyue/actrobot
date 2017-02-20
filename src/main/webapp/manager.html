@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员界面</title>
+    <link rel="stylesheet" href="css/bootstrap-button.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        #tip{
+            font-size:30px;
+            position: absolute;
+            top:0;
+            margin-top: 30px;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body onload="init()">
+    <div id="tip">已进入管理员界面，按‘Esc’键返回</div>
+    <div id="text_area">你好，管理员！请先输入密码</div>
+    <div>
+        <input class="input_box" id='password_input' type="password" style='margin-top:30px' onkeydown="if(event.keyCode==13) password_check()"/>
+    </div>
+
+    <script src="/js/ex/jquery.min.js"></script>
+    <script src="/js/ex/d3.min.js"></script>
+</body>
+</html>
