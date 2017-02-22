@@ -80,13 +80,13 @@ function upload_face_rec() {
             console.log(data);
             if (state == 1){
                 state = 2;
+                user = data;
                 if (data != "")
-                    user = data;
+                    text_change("你好，"+user+"！有什么可以帮你的吗？");
                 else
-                    user = "陌生人";
+                    text_change("你好，陌生人！有什么可以帮你的吗？");
                 var text_select_area = $('#text_select_area');
                 text_select_area.fadeIn();
-                text_change("你好，"+user+"！有什么可以帮你的吗？");
                 text.animate({"margin-top":window_height/2-font_size_half-text_select_area.height()});
             }
         }
@@ -104,6 +104,8 @@ function face_add() {
     photo_name_input.keydown(function(event){
         if(event.keyCode==13){
             photo_name_input.hide();
+            text_change("正在上传人脸...");
+            text.animate({"margin-top":window_height/2-font_size_half});
             upload_face_add(photo_name_input.val());
         }
     });
@@ -119,13 +121,13 @@ function upload_face_add(name){
         data:{'base64':base64, 'name':name},
         success: function(data){
             console.log(data);
+            user = name;
+            var text_select_area = $('#text_select_area');
+            text_select_area.fadeIn();
+            text_change(user+"，我已经记下了你的样子，很高兴认识你！还有什么可以帮你的吗？");
+            text.animate({"margin-top":window_height/2-font_size_half-text_select_area.height()});
         }
     });
-    user = name;
-    var text_select_area = $('#text_select_area');
-    text_select_area.fadeIn();
-    text_change(user+"，我已经记下了你的样子，很高兴认识你！还有什么可以帮你的吗？");
-    text.animate({"margin-top":window_height/2-font_size_half-text_select_area.height()});
 }
 
 
