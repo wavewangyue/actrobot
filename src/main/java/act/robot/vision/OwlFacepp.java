@@ -36,6 +36,8 @@ class OwlFacepp {
     private String api_secret = "nKpmFqDaRSRegbPe9iYHLcOGSJ6k6c8y";
     private String faceset_token = "a01b57290d1cda13199590e3a30871df";
 
+    private String face_token_cache = null;
+
 
     //从图片中抽取人脸
     private String detect(String path) throws IOException{
@@ -89,9 +91,15 @@ class OwlFacepp {
         HttpEntity httpEntity =  httpResponse.getEntity();
         String responseString = EntityUtils.toString(httpEntity);
         log.info(responseString);
+        JsonArray faces = new JsonParser().parse(responseString).getAsJsonObject().get("faces").getAsJsonArray();
+        if (faces.size() == 0){
+            return "Error: no face detected";
+        }else{
+            face_token_cache = faces.get(0).getAsJsonObject().get("face_token").getAsString();
+        }
         JsonArray results = new JsonParser().parse(responseString).getAsJsonObject().get("results").getAsJsonArray();
         if (results.size() == 0){
-            return null;
+            return "";
         }else{
             JsonObject result = results.get(0).getAsJsonObject();
             double conf = result.get("confidence").getAsDouble();
@@ -106,12 +114,12 @@ class OwlFacepp {
 
 
     //向人脸库中添加人脸
-    boolean face_add(String path, String face_name) throws IOException{
+    String face_add(String face_name) throws IOException{
 
         String url = "https://api-cn.faceplusplus.com/facepp/v3/faceset/addface";
 
-        String face_token = detect(path);
-        if (face_token == null) return false;
+        String face_token = face_token_cache;
+        if (face_token == null) return "Error: no face detected";
         HttpPost httpPost = new HttpPost(url);
         HttpClient httpclient = HttpClientBuilder.create().build();
         List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
@@ -125,7 +133,7 @@ class OwlFacepp {
         String responseString = EntityUtils.toString(httpEntity);
         log.info(responseString);
         face_naming(face_name, face_token);
-        return true;
+        return "Success";
     }
 
 

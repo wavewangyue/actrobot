@@ -17,12 +17,12 @@ body{
 }
 #camera{
     margin:auto;
-    width:640px;
-    height:380px;
+    width:600px;
+    height:450px;
 }
 #text_area{
     font-size:50px;
-    padding:10px 20%;
+    padding:10px 10%;
 }
 .input_box{
     font-size: 40px;
@@ -35,7 +35,7 @@ body{
     display: none;
 }
 .text_select_item{
-    margin-bottom: 50px;
+    margin-top: 50px;
     margin-left: 50px;
     width:30%;
 }

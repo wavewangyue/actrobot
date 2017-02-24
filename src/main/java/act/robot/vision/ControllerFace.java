@@ -25,14 +25,9 @@ public class ControllerFace {
     @RequestMapping(value = "/face_add", method = RequestMethod.POST, produces="text/html;charset=UTF-8")
     @ResponseBody
     public String add_a_face(HttpServletRequest request) throws IOException{
-        String image_base64 = request.getParameter("base64");
         String user_name = request.getParameter("name");
-        String filepath = save_a_face(image_base64);
         //添加人脸
-        if (owlFacepp.face_add(filepath, user_name))
-            return "success";
-        else
-            return "failed";
+        return owlFacepp.face_add(user_name);
     }
 
     @RequestMapping(value = "/face_rec", method = RequestMethod.POST, produces="text/html;charset=UTF-8")
