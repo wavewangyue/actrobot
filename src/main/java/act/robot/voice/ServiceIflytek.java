@@ -21,6 +21,7 @@ class ServiceIflytek {
         mTts.setParameter(SpeechConstant.VOICE_NAME, "xiaoyan");//设置发音人
         mTts.setParameter(SpeechConstant.SPEED, "50");//设置语速
         mTts.setParameter(SpeechConstant.VOLUME, "80");//设置音量，范围0~100
+        mTts.setParameter(SpeechConstant.TTS_AUDIO_PATH, "./iflytek.pcm");
         mTts.startSpeaking("科大讯飞，让世界聆听我们的声音", mSynListener);
         log.info("ifytek service init done.");
     }
