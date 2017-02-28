@@ -53,7 +53,7 @@ function face_rec() {
 
 //显示照相机
 function show_camera(){
-    text_change("请正对我进行拍摄");
+    text_change("欢迎来到A C T实验室，请正对我进行拍摄");
     var camera_area = $("#camera_area");
     text.animate({"margin-top":(window_height-font_size-camera_area.height())/2},function(){
         var camera = $("#camera");
@@ -87,7 +87,7 @@ function upload_face_rec(dataUrl) {
             console.log(data);
             if (state == 1){
                 if (data == "Error: no face detected"){
-                    text_change("No face detected! Please try again.");
+                    text_change("没有检测到人脸，麻烦重试一次");
                     var camera_area = $("#camera_area");
                     text.animate({"margin-top":(window_height-font_size-camera_area.height())/2},function(){
                         camera_area.show();
@@ -148,6 +148,10 @@ function upload_face_add(name){
 
 //文字改变
 function text_change(text_target) {
+    var url = "api/voice/speak?s="+text_target;
+    $.get(url, function(data){
+        console.log(data);
+    });
     text.text(text_target);
     colorstate = parseInt(Math.random()*20);
     body.transition()
