@@ -18,9 +18,16 @@ public class ControllerVoice {
 
     @RequestMapping(value = "/speak", method = RequestMethod.GET, produces="text/html;charset=UTF-8")
     @ResponseBody
-    public String add_a_face(HttpServletRequest request) throws IOException {
+    public String speak(HttpServletRequest request) throws IOException {
         String sentence = request.getParameter("s");
         serviceIflytek.speak(sentence);
+        return "yes";
+    }
+
+    @RequestMapping(value = "/listen", method = RequestMethod.GET, produces="text/html;charset=UTF-8")
+    @ResponseBody
+    public String listen() throws IOException {
+        serviceIflytek.listen();
         return "yes";
     }
 }
