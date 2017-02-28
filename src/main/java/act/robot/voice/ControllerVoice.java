@@ -20,6 +20,8 @@ public class ControllerVoice {
     @ResponseBody
     public String speak(HttpServletRequest request) throws IOException {
         String sentence = request.getParameter("s");
+        //你好
+        //欢迎来到ACT实验室
         serviceIflytek.speak(sentence);
         return "yes";
     }

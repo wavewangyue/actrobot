@@ -19,11 +19,10 @@ class ServiceIflytek {
         SpeechUtility.createUtility(SpeechConstant.APPID +"=5850f914");
         //语音合成初始化
         mTts.setParameter(SpeechConstant.ENGINE_TYPE, "cloud");
-        mTts.setParameter(SpeechConstant.VOICE_NAME, "xiaoyan");//设置发音人
+        mTts.setParameter(SpeechConstant.VOICE_NAME, "xiaoyu");//设置发音人
         mTts.setParameter(SpeechConstant.SPEED, "50");//设置语速
         mTts.setParameter(SpeechConstant.VOLUME, "80");//设置音量，范围0~100
         mTts.setParameter(SpeechConstant.TTS_AUDIO_PATH, "./iflytek.pcm");
-        mTts.startSpeaking("科大讯飞，让世界聆听我们的声音", mSynListener);
         //语音识别初始化
         mIat.setParameter(SpeechConstant.DOMAIN, "iat");
         mIat.setParameter(SpeechConstant.LANGUAGE, "zh_cn");
@@ -33,7 +32,7 @@ class ServiceIflytek {
 
 
     void speak(String s){
-        mTts.startSpeaking("科大讯飞，让世界聆听我们的声音", mSynListener);
+        mTts.startSpeaking(s, mSynListener);
     }
 
     void listen(){
