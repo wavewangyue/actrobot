@@ -1,11 +1,7 @@
 # 北航ACT机器人系统 actrobot
 
-版本1.0
+v0.1 实验版本
 
-Copyright@2016 ACT实验室，北航
+©Copyright 2016, ACT Lib, Beihang University
 
-# 开发环境
-
-Intellij IDEA
-
-Java + SpringMVC
+Coded with Java and Intellij IDEA, built with SpringMVC.
