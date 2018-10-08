@@ -2,6 +2,8 @@
 
 v0.1 实验版本
 
+被动唤醒，人脸识别，人脸记录，智能对话，智能引路
+
 ©Copyright 2016, ACT Lib, Beihang University
 
 Coded with Java and Intellij IDEA, built with SpringMVC.
